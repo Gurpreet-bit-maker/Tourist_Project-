@@ -1,0 +1,84 @@
+{
+  "_embedded": {
+    "events": [
+      {
+        "id": "evt1",
+        "name": "Rock Music Festival 2025",
+        "url": "https://ticketmaster.com/event/rockfest2025",
+        "dates": {
+          "start": {
+            "localDate": "2025-08-10",
+            "localTime": "18:00:00"
+          }
+        },
+        "images": [
+          {
+            "url": "https://via.placeholder.com/300x200.png?text=Rock+Festival"
+          }
+        ],
+        "_embedded": {
+          "venues": [
+            {
+              "name": "Delhi Stadium",
+              "city": {
+                "name": "Delhi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "evt2",
+        "name": "Tech Expo India",
+        "url": "https://ticketmaster.com/event/techexpo2025",
+        "dates": {
+          "start": {
+            "localDate": "2025-08-15",
+            "localTime": "10:00:00"
+          }
+        },
+        "images": [
+          {
+            "url": "https://via.placeholder.com/300x200.png?text=Tech+Expo"
+          }
+        ],
+        "_embedded": {
+          "venues": [
+            {
+              "name": "Mumbai Convention Center",
+              "city": {
+                "name": "Mumbai"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "evt3",
+        "name": "Stand-up Comedy Night",
+        "url": "https://ticketmaster.com/event/comedy2025",
+        "dates": {
+          "start": {
+            "localDate": "2025-08-20",
+            "localTime": "20:00:00"
+          }
+        },
+        "images": [
+          {
+            "url": "https://via.placeholder.com/300x200.png?text=Comedy+Night"
+          }
+        ],
+        "_embedded": {
+          "venues": [
+            {
+              "name": "Bangalore Arts Center",
+              "city": {
+                "name": "Bangalore"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

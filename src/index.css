@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+.offerText
+{
+    @apply text-gray-400;
+}
+
+.box
+{
+    @apply   p-2 rounded m-2 relative h-110 w-100 hover:scale-105 transition ease-in-out duration-300;
+}
+.text
+{
+    @apply border absolute m-4 top-85 left-14 w-65 font-sans rounded-t-xs;
+}
+.mark
+{
+    @apply inline;
+}
