@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 export default function TourCards() {
   return (
-    <div className="">
+    <div className="h-250 border w-full">
       <p className="text-center text-lg">Category</p>
       <h1 className="text-center text-3xl font-bold mt-2 tracking-wider">
         {"we best offer you".toUpperCase()}
       </h1>
-      <div className="flex h-180 justify-center items-center">
+      <div className="flex justify-center flex-col items-center">
         <Link to="whether">
           <TourDemo idx={0} t={0} />
         </Link>

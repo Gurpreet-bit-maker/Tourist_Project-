@@ -10,33 +10,26 @@ import {
 import WeatherPage from "../pages/WeatherPage";
 
 export default function NavTab() {
- 
-
   let styles = " hover:text-green-400 p-2 font-bold";
+
   return (
-    <div>
-      <div className="p-2 border flex gap-x-90 m-1 sticky top-0">
-        <img className="w-25 h-fit mt-2" src={logo} alt="" />
-        <ul className="flex gap-x-9 p-1 font-mono text-lg ">
-          <li className={styles}>
-            <Link to="/">Home</Link>
-          </li>
-          <li className={styles}>
-            <Link to="/contect">Contect</Link>
-          </li>
-          <li className={styles}>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      
-        <button
-          onClick={btnClick}
-          className="border mt-1 p-2 h-fit bg-green-200 hover:bg-cyan-500 shadow-lg shadow-cyan-500/50 hover:bg-green-700 hover:text-white rounded transition duration-300 ease-in-out tracking-wider"
-        >
-          Click me!
-        </button>
+    <div className=" w-full h-20">
+      {/* navbaar */}
+
+      <div className=" fixed top-1 border w-full flex justify-between px-2 py-5 z-3 ">
+        <img className="w-25 h-fit" src={logo} alt="" />
+        <div>
+          <div className="flex gap-x-2">
+            <Link to="/signup">
+              <button className="">SignUp</button>
+            </Link>
+            <Link to="login">
+
+            <button className="underline">/Login</button>
+            </Link>
+          </div>
+        </div>
       </div>
-     
     </div>
   );
 }
