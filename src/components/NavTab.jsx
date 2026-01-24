@@ -13,10 +13,12 @@ export default function NavTab() {
   let styles = " hover:text-green-400 p-2 font-bold";
 
   return (
-    <div className=" w-full h-20">
+    <div className=" w-full h-20 ">
       {/* navbaar */}
 
-      <div className=" fixed top-1 border w-full flex justify-between px-2 py-5 z-3 ">
+      <div className=" fixed top-0 w-full flex justify-between px-2 py-5 z-3 bg-blue-50
+
+">
         <img className="w-25 h-fit" src={logo} alt="" />
         <div>
           <div className="flex gap-x-2">

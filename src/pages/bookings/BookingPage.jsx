@@ -1,28 +1,72 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import bookedVaribleContext from "../../context/bookedFlights/bookedCreateContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export default function BookingPage() {
   let data = useLocation();
-  let { flightsData } = useContext(bookedVaribleContext);
-  console.log(flightsData);
+  let navigate = useNavigate();
+  let { flightsData, setFlightData } = useContext(bookedVaribleContext);
+  let [bookedFlightBtn, setBookedFlight] = useState(null);
 
-  let bookFlight = (flight) => {
-    console.log(flight);
+  // let datahai = [{ name: "singh", roll: "23" }, { other: "manoj" }];
+  // console.log(datahai[datahai.length - 1]);
+
+  // economy selection function
+  let selectEconomy = (economy, flight) => {
+    setFlightData((prev) =>
+      prev.map((item) =>
+        item.id == flight.id
+          ? { ...item, price: { ...item.price, bookedClass: economy } }
+          : item,
+      ),
+    );
   };
+
+  let bookFlight = async (flight) => {
+    if (!flight.price.bookedClass) {
+      alert(`Choose Classes Of ${flight.airline}`);
+      return;
+    }
+
+    try {
+      let booked = flightsData.map((item) =>
+        item.id == flight.id ? { ...item, booked: true } : item,
+      );
+      let update = booked.filter((item) => item.booked);
+      // console.log(update[update.length - 1]);
+      let storeBookedFlight = await axios.post(
+        "http://localhost:8080/user/book",
+        update[update.length - 1],
+        { withCredentials: true },
+      );
+      setFlightData(booked);
+      // console.log(storeBookedFlight);
+    } catch (error) {
+      console.log(error);
+      if (error) {
+        navigate("/login");
+      }
+    }
+    // console.log(flight);
+  };
+
+  useEffect(() => {
+    console.log(flightsData);
+  });
 
   return (
     <>
-      <div className="max-w-4xl mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-4xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-2 h-screen ">
         {flightsData.map((flight) => {
           return (
             flight.to.split(" ")[0] == data.state.to && (
               <div
                 key={flight.id}
-                className="bg-white rounded-xl shadow-lg border-l-4 border-indigo-500 p-5 hover:shadow-2xl transition duration-300"
+                className="bg-white rounded-xl shadow-lg border-l-4 border-indigo-500 p-5 hover:shadow-2xl transition duration-300 h-60"
               >
                 {/* Airline + Flight Number */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold text-indigo-600">
                     {flight.airline}
                   </h2>
@@ -68,7 +112,8 @@ export default function BookingPage() {
                   {flight.seatClass.map((cls, idx) => (
                     <span
                       key={idx}
-                      className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-indigo-200"
+                      onClick={() => selectEconomy(cls, flight)}
+                      className="bg-indigo-100 text-indigo-700 active:bg-red-400 px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-indigo-200"
                     >
                       {cls} - ₹{flight.price[cls]}
                     </span>
@@ -77,10 +122,16 @@ export default function BookingPage() {
 
                 {/* Book Now Button */}
                 <button
-                  onClick={() => bookFlight(flight)}
+                  onClick={() => bookFlight(flight, flight.cls)}
                   className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md transition duration-300"
                 >
-                  Book Now
+                  {flight.booked ? (
+                    <span className="text-red-500 text-lg font-semibold">
+                      Booked...
+                    </span>
+                  ) : (
+                    <span className="text-green-500">Book Now</span>
+                  )}
                 </button>
               </div>
             )
