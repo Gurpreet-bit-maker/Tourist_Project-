@@ -13,7 +13,7 @@ export default function GetTour() {
   useEffect(() => {
     let getTourApi_call = async () => {
       try {
-        let res = await axios.get("http://localhost:8080/user/gettour");
+        let res = await axios.get("https://tourist-project-backend-1.onrender.com/user/gettour");
         setDummytourData(res.data);
       } catch (error) {
         console.log(error);
