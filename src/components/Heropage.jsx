@@ -10,15 +10,12 @@ export default function Heropage() {
       <div className="flex w-full h-180 shadow-sm gap-x-1 justify-center">
         <div className="">
           <div className="flex justify-center flex-col  h-screen  pl-2  w-50">
-            <h1 className="text-2xl text-green-500 mt-1 font-sans text-shadow-md">
+            <h1 className="text-2xl text-green-500 mt-1 font-sans text-shadow-md tracking-wider">
               Travel enjoy, <br /> and live a new <br /> and full life
             </h1>
-            <p className="mt-3 font-serif tracking-wider text-sm">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Exercitationem temporibus sunt eveniet, autem eaque tempora
-              mollitia expedita optio excepturi nemo cum architecto sed
-              consequatur, atque hic tempore perspiciatis itaque ad officia
-              corrupti non ea ullam. Suscipit rem eveniet eligendi esse!
+            <p className="mt-3 font-sans tracking-wider text-lg leading-5">
+              Don’t wait for tomorrow—start today. Memories are more valuable
+              than destinations.
             </p>
             <Link to="/getTour">
               <button className=" hover:bg-green-400 hover:text-white rounded transition duration-300 ease-in-out bg-yellow-300 rounded p-2 mt-4 mb-2 w-22">
@@ -36,10 +33,12 @@ export default function Heropage() {
         </div>
       </div>
       <div className="shadow-sm bg-green-50 mt-1">
-        <h1 className="text-center text-2xl font-semibold tracking-wide">Categories</h1>
+        <h1 className="text-center text-2xl font-semibold tracking-wide">
+          Categories
+        </h1>
         <FlightCategory />
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

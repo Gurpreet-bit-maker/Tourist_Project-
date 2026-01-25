@@ -23,6 +23,7 @@ export default function BookingPage() {
     );
   };
 
+
   let bookFlight = async (flight) => {
     if (!flight.price.bookedClass) {
       alert(`Choose Classes Of ${flight.airline}`);
