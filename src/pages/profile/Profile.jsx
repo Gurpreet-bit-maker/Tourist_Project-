@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import axios from "axios";
+
 export default function Profile() {
   let navigate = useNavigate();
 
@@ -9,7 +9,7 @@ export default function Profile() {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:5000/user/profile", {
+        let result = await axios.get("https://tourist-project-backend.onrender.com/user/profile", {
           withCredentials: true,
         });
 

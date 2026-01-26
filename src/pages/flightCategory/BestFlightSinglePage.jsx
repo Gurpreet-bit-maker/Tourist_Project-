@@ -10,7 +10,7 @@ export default function BestFlightSinglePage() {
   let flight = flightState.state;
   let [bookedFlights, setBookedFlight] = useState([]);
 
-  console.log(flight);
+
 
   let reducer = (state, action) => {
     switch (action.type) {
@@ -37,60 +37,39 @@ export default function BestFlightSinglePage() {
   let finalPrice = gstPrice + coversTotalPrice;
 
   let { price, seatClass, ...rest } = flight;
+  
 
   let storeBestFlight = async () => {
+    // ! check as backend level bookings
+    // if(bookedFlights < 0)
+    // {
+    //   return <p></p>
+    // }
     let newBooking = {
       ...rest,
       availableSeats: availableSeats,
       price: finalPrice,
-      persons: state.count,
       booked: true,
+      persons: state.count,
     };
     try {
-      let storeBestFlightData = await axios.post(
-        "https://tourist-project-backend.onrender.com/user/bestflight",
+      let res = await axios.post(
+        "https://tourist-project-backend.onrender.com/user/common",
         newBooking,
         { withCredentials: true },
       );
-      console.log(storeBestFlightData);
-      console.log("bookied");
+      console.log(res.data);
+      setBookedFlight(newBooking);
+      // ! dbs live data
+      // available seats
     } catch (error) {
       console.log(error);
     }
   };
 
-  // let storeBestFlight = async () => {
-  //   // ! check as backend level bookings
-  //   // if(bookedFlights < 0)
-  //   // {
-  //   //   return <p></p>
-  //   // }
-  //   let newBooking = {
-  //     ...rest,
-  //     availableSeats: availableSeats,
-  //     price: finalPrice,
-  //   };
-  //   try {
-  //     let res = await axios.post(
-  //       "https://tourist-project-backend.onrender.com/user/expensiveflights",
-  //       newBooking,
-  //       { withCredentials: true },
-  //     );
-  //     console.log(res);
-  //     setBookedFlight(newBooking);
-  //     // let changeFinalPrice = (5 / 100) * priceS;
-  //     // console.log(changeFinalPrice);
-  //     // finalPrice = changeFinalPrice + priceS;
-  //     // ! dbs live data
-  //     // available seats
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  useEffect(() => {
-    console.log(bookedFlights);
-  });
+  // useEffect(() => {
+  //   console.log(bookedFlights);
+  // });
   return (
     <div className="h-screen">
       <button

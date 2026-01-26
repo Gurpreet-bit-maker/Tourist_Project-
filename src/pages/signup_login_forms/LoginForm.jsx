@@ -23,10 +23,11 @@ export default function LoginForm() {
         },
       );
 
-      console.log(loginData);
+      // console.log(loginData);
+      console.log(e);
       seterrorHai("");
       reset();
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       seterrorHai(error.response.data.message);
       console.log(error);
@@ -83,7 +84,7 @@ export default function LoginForm() {
         {isSubmitSuccessful && <p>submited</p>}
         {/* home btn */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/profile")}
           className="flex mt-2 items-center  gap-1 rounded-lg border border-gray-300 bg-black/80 px-3 py-1 text-lg font-medium text-gray-700 hover:bg-gray-100 transition"
         >
           <svg

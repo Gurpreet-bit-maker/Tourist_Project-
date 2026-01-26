@@ -27,8 +27,8 @@ import BestFlights from "./pages/flightCategory/BestFlights.jsx";
 import Events from "./pages/flightCategory/Events.jsx";
 import BestFlightsContext from "./context/bestFlightsData/BestFlightsContext.jsx";
 import BestFlightSinglePage from "./pages/flightCategory/BestFlightSinglePage.jsx";
-function App({ dark }) {
-  console.log(dark);
+function App() {
+
 
   return (
     <>
