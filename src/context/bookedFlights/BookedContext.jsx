@@ -8,7 +8,7 @@ let BookedContext = ({ children }) => {
 
   useEffect(() => {
     let dataFetch = async () => {
-      let res = await axios.get("http://localhost:8080/user/flight");
+      let res = await axios.get("http://localhost:5000/user/flight");
       setFlightData(...res.data);
     };
     dataFetch();

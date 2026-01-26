@@ -5,7 +5,7 @@ export default function Icons() {
 
   let profileNavigate = async () => {
     try {
-      let result = await axios.get("http://localhost:8080/user/profile", {
+      let result = await axios.get("http://localhost:5000/user/profile", {
         withCredentials: true,
       });
       if (result) {
@@ -18,7 +18,7 @@ export default function Icons() {
   };
   let bookingsNavigate = async () => {
     try {
-      let result = await axios.get("http://localhost:8080/user/bookings", {
+      let result = await axios.get("http://localhost:5000/user/bookings", {
         withCredentials: true,
       });
 

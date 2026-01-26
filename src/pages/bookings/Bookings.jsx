@@ -9,7 +9,7 @@ export default function Bookings() {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:8080/user/bookings", {withCredentials: true});
+        let result = await axios.get("https://tourist-project-backend.onrender.com/user/bookings", {withCredentials: true});
         setbookings(result.data);
         
       } catch (error) {

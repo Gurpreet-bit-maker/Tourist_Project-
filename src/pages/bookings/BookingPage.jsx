@@ -23,7 +23,6 @@ export default function BookingPage() {
     );
   };
 
-
   let bookFlight = async (flight) => {
     if (!flight.price.bookedClass) {
       alert(`Choose Classes Of ${flight.airline}`);
@@ -35,21 +34,19 @@ export default function BookingPage() {
         item.id == flight.id ? { ...item, booked: true } : item,
       );
       let update = booked.filter((item) => item.booked);
-      // console.log(update[update.length - 1]);
+
       let storeBookedFlight = await axios.post(
-        "http://localhost:8080/user/book",
+        "https://tourist-project-backend.onrender.com/user/book",
         update[update.length - 1],
         { withCredentials: true },
       );
       setFlightData(booked);
-      // console.log(storeBookedFlight);
     } catch (error) {
       console.log(error);
       if (error) {
         navigate("/login");
       }
     }
-    // console.log(flight);
   };
 
   useEffect(() => {

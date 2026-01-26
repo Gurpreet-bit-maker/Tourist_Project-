@@ -1,11 +1,96 @@
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useReducer, useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 export default function BestFlightSinglePage() {
   let flightState = useLocation();
   let navigate = useNavigate();
-
   let flight = flightState.state;
+  let [bookedFlights, setBookedFlight] = useState([]);
+
+  console.log(flight);
+
+  let reducer = (state, action) => {
+    switch (action.type) {
+      case "inc":
+        console.log(state);
+        return {
+          count: state.count <= 4 ? state.count + 1 : state.count,
+        };
+      case "dec":
+        return {
+          count: state.count > 0 ? state.count - 1 : state.count,
+        };
+    }
+  };
+
+  let [state, dispatch] = useReducer(reducer, { count: 1 });
+  // available seats
+  let totalSeats = flight.availableSeats;
+  let availableSeats = totalSeats - state.count;
+  // total price with gst
+  let priceS = flight.price.Economy;
+  let coversTotalPrice = priceS * state.count;
+  let gstPrice = (5 / 100) * coversTotalPrice;
+  let finalPrice = gstPrice + coversTotalPrice;
+
+  let { price, seatClass, ...rest } = flight;
+
+  let storeBestFlight = async () => {
+    let newBooking = {
+      ...rest,
+      availableSeats: availableSeats,
+      price: finalPrice,
+      persons: state.count,
+      booked: true,
+    };
+    try {
+      let storeBestFlightData = await axios.post(
+        "https://tourist-project-backend.onrender.com/user/bestflight",
+        newBooking,
+        { withCredentials: true },
+      );
+      console.log(storeBestFlightData);
+      console.log("bookied");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // let storeBestFlight = async () => {
+  //   // ! check as backend level bookings
+  //   // if(bookedFlights < 0)
+  //   // {
+  //   //   return <p></p>
+  //   // }
+  //   let newBooking = {
+  //     ...rest,
+  //     availableSeats: availableSeats,
+  //     price: finalPrice,
+  //   };
+  //   try {
+  //     let res = await axios.post(
+  //       "https://tourist-project-backend.onrender.com/user/expensiveflights",
+  //       newBooking,
+  //       { withCredentials: true },
+  //     );
+  //     console.log(res);
+  //     setBookedFlight(newBooking);
+  //     // let changeFinalPrice = (5 / 100) * priceS;
+  //     // console.log(changeFinalPrice);
+  //     // finalPrice = changeFinalPrice + priceS;
+  //     // ! dbs live data
+  //     // available seats
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  useEffect(() => {
+    console.log(bookedFlights);
+  });
   return (
     <div className="h-screen">
       <button
@@ -57,15 +142,21 @@ export default function BestFlightSinglePage() {
           <div className="rounded-xl bg-gray-50 p-4 text-center">
             <p className="text-sm text-gray-500">Seats</p>
             <p className="text-lg font-semibold text-gray-800">
-              {flight.availableSeats}
+              {availableSeats}
             </p>
           </div>
 
           <div className="rounded-xl bg-gray-50 p-4 text-center">
-            <p className="text-sm text-gray-500">Stops</p>
-            <p className="text-lg font-semibold text-gray-800">
-              {flight.stops}
-            </p>
+            <p className="text-sm text-gray-500">Persons</p>
+            {state.count == 5 ? (
+              <p className="text-lg font-semibold text-red-500">
+                {state.count} limit
+              </p>
+            ) : (
+              <p className="text-lg font-semibold text-gray-800">
+                {state.count}
+              </p>
+            )}
           </div>
         </div>
 
@@ -73,13 +164,32 @@ export default function BestFlightSinglePage() {
         <div className="flex items-center justify-between rounded-xl bg-green-50 p-5">
           <div>
             <p className="text-sm text-gray-500">Economy Price</p>
-            <p className="text-3xl font-bold text-green-700">
-              ₹{flight.price.Economy}
-            </p>
+            <p className="text-3xl font-bold text-green-700">₹{finalPrice}</p>
           </div>
-          <button className="rounded-xl bg-green-600 px-6 py-3 text-white text-lg font-semibold hover:bg-green-700 transition">
-            Book Now
-          </button>
+          {/* booking button */}
+          <div className="flex gap-x-2">
+            <button
+              onClick={() => storeBestFlight()}
+              className="rounded-xl bg-green-600 px-6 py-3 text-white text-lg font-semibold hover:bg-green-700 transition"
+            >
+              Book Now
+            </button>
+            {/* select covers button */}
+            <div className="flex flex-col gap-y-1 text-center text-md">
+              <span
+                onClick={() => dispatch({ type: "inc" })}
+                className="border px-2 rounded-sm active:bg-black active:text-white"
+              >
+                +
+              </span>
+              <span
+                onClick={() => dispatch({ type: "dec" })}
+                className="border px-2 rounded-sm active:bg-black active:text-white"
+              >
+                -
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

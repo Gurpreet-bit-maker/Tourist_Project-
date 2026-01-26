@@ -9,7 +9,7 @@ export default function Profile() {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:8080/user/profile", {
+        let result = await axios.get("http://localhost:5000/user/profile", {
           withCredentials: true,
         });
 
