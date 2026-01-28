@@ -10,9 +10,9 @@ export default function GetTourDetailsPage() {
 
   return (
     <>
-      <div className="max-w-5xl mx-auto p-4 space-y-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
+      <div className="max-w-5xl  mx-auto p-4 space-y-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl">
         {/* About */}
-        <div className="bg-white rounded-xl shadow border-l-4 border-indigo-500 p-5">
+        <div className="bg-white border rounded-xl shadow border-l-4 border-indigo-500 p-5">
           <h2 className="text-lg font-semibold text-indigo-600 mb-2">
             About This Place
           </h2>
@@ -83,10 +83,10 @@ export default function GetTourDetailsPage() {
         </div>
       </div>
       {/*//! book btn */}
-      <div className="mx-2 my-1 h-15">
+      <div className="mx-2 my-1 h-25">
         <button
           onClick={() => bookFlight_btn(place)}
-          className="border-1 h-10 border-black text-shadow-lg px-2 rounded-lg text-lg bg-red-500 text-white m-auto w-full"
+          className="border-1 h-12 font-bold border-black text-shadow-lg px-2 rounded-lg text-lg bg-green-500 text-black m-auto w-full"
         >
           Go For Flight
         </button>

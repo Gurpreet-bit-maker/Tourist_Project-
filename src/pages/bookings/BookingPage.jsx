@@ -55,7 +55,7 @@ export default function BookingPage() {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-2 h-screen ">
+      <div className="max-w-4xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-2 h-200 ">
         {flightsData.map((flight) => {
           return (
             flight.to.split(" ")[0] == data.state.to && (

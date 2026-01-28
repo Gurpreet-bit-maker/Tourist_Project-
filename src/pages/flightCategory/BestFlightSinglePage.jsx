@@ -38,6 +38,7 @@ export default function BestFlightSinglePage() {
 
   let { price, seatClass, ...rest } = flight;
   
+  
 
   let storeBestFlight = async () => {
     // ! check as backend level bookings
@@ -71,7 +72,7 @@ export default function BestFlightSinglePage() {
   //   console.log(bookedFlights);
   // });
   return (
-    <div className="h-screen">
+    <div className="h-200">
       <button
         onClick={() => navigate("/bestflights")}
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2"
