@@ -7,18 +7,18 @@ export default function BestFlights() {
 
   console.log(bestFlights);
   return (
-    <div>
+    <div> 
       <button
         onClick={() => navigate("/")}
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2"
       >
-        ←
+        ← back
       </button>
-      <div className="flex flex-wrap gap-4 ">
+      <div className="flex flex-wrap gap-4 md:justify-center">
         {bestFlights.map((flight) => (
           <div
             key={flight.id}
-            className="w-full  max-w-md rounded-2xl border border-gray-400 bg-white p-4 shadow hover:shadow-md transition cursor-pointer"
+            className="w-full  max-w-md rounded-2xl border border-gray-400 bg-white p-4 shadow hover:shadow-md transition cursor-pointer md:h-35 md:bg-orange-200"
             onClick={() => navigate("/bflightsingle", { state: flight })}
           >
             {/* Header */}

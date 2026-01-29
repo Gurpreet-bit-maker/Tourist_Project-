@@ -10,8 +10,6 @@ export default function BestFlightSinglePage() {
   let flight = flightState.state;
   let [bookedFlights, setBookedFlight] = useState([]);
 
-
-
   let reducer = (state, action) => {
     switch (action.type) {
       case "inc":
@@ -37,8 +35,6 @@ export default function BestFlightSinglePage() {
   let finalPrice = gstPrice + coversTotalPrice;
 
   let { price, seatClass, ...rest } = flight;
-  
-  
 
   let storeBestFlight = async () => {
     // ! check as backend level bookings
@@ -72,102 +68,106 @@ export default function BestFlightSinglePage() {
   //   console.log(bookedFlights);
   // });
   return (
-    <div className="h-200">
+    <div className="h-200 md:h-140">
       <button
         onClick={() => navigate("/bestflights")}
-        className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2"
+        className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2 md:w-20"
       >
-        ←
+        ← back
       </button>
-      <div className="w-full max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-lg ">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-bold text-gray-800">
-            ✈️ Flight Details
-          </h2>
-          <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
-            Best Flight
-          </span>
-        </div>
-
-        {/* Airline */}
-        <div className="mb-6">
-          <p className="text-sm text-gray-500">Airline</p>
-          <p className="text-2xl font-semibold text-gray-800">
-            {flight.airline} ({flight.flightNumber})
-          </p>
-        </div>
-
-        {/* Route */}
-        <div className="grid grid-cols-2 gap-8 mb-6">
-          <div>
-            <p className="text-sm text-gray-500">From</p>
-            <p className="text-xl font-semibold text-gray-800">{flight.from}</p>
+      <div className=" md:flex md:justify-center">
+        <div className="  w-full max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-lg ">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-3xl font-bold text-gray-800">
+              ✈️ Flight Details
+            </h2>
+            <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
+              Best Flight
+            </span>
           </div>
-          <div className="text-right">
-            <p className="text-sm text-gray-500">To</p>
-            <p className="text-xl font-semibold text-gray-800">{flight.to}</p>
-          </div>
-        </div>
 
-        {/* Info */}
-        <div className="grid grid-cols-3 gap-6 mb-6">
-          <div className="rounded-xl bg-gray-50 p-4 text-center">
-            <p className="text-sm text-gray-500">Duration</p>
-            <p className="text-lg font-semibold text-gray-800">
-              {flight.duration}
+          {/* Airline */}
+          <div className="mb-6">
+            <p className="text-sm text-gray-500">Airline</p>
+            <p className="text-2xl font-semibold text-gray-800">
+              {flight.airline} ({flight.flightNumber})
             </p>
           </div>
 
-          <div className="rounded-xl bg-gray-50 p-4 text-center">
-            <p className="text-sm text-gray-500">Seats</p>
-            <p className="text-lg font-semibold text-gray-800">
-              {availableSeats}
-            </p>
-          </div>
-
-          <div className="rounded-xl bg-gray-50 p-4 text-center">
-            <p className="text-sm text-gray-500">Persons</p>
-            {state.count == 5 ? (
-              <p className="text-lg font-semibold text-red-500">
-                {state.count} limit
+          {/* Route */}
+          <div className="grid grid-cols-2 gap-8 mb-6">
+            <div>
+              <p className="text-sm text-gray-500">From</p>
+              <p className="text-xl font-semibold text-gray-800">
+                {flight.from}
               </p>
-            ) : (
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-500">To</p>
+              <p className="text-xl font-semibold text-gray-800">{flight.to}</p>
+            </div>
+          </div>
+
+          {/* Info */}
+          <div className="grid grid-cols-3 gap-6 mb-6">
+            <div className="rounded-xl bg-gray-50 p-4 text-center">
+              <p className="text-sm text-gray-500">Duration</p>
               <p className="text-lg font-semibold text-gray-800">
-                {state.count}
+                {flight.duration}
               </p>
-            )}
-          </div>
-        </div>
+            </div>
 
-        {/* Price */}
-        <div className="flex items-center justify-between rounded-xl bg-green-50 p-5">
-          <div>
-            <p className="text-sm text-gray-500">Economy Price</p>
-            <p className="text-3xl font-bold text-green-700">₹{finalPrice}</p>
+            <div className="rounded-xl bg-gray-50 p-4 text-center">
+              <p className="text-sm text-gray-500">Seats</p>
+              <p className="text-lg font-semibold text-gray-800">
+                {availableSeats}
+              </p>
+            </div>
+
+            <div className="rounded-xl bg-gray-50 p-4 text-center">
+              <p className="text-sm text-gray-500">Persons</p>
+              {state.count == 5 ? (
+                <p className="text-lg font-semibold text-red-500">
+                  {state.count} limit
+                </p>
+              ) : (
+                <p className="text-lg font-semibold text-gray-800">
+                  {state.count}
+                </p>
+              )}
+            </div>
           </div>
-          {/* booking button */}
-          <div className="flex gap-x-2">
-            <button
-              onClick={() => storeBestFlight()}
-              className="rounded-xl bg-green-600 px-6 py-3 text-white text-lg font-semibold hover:bg-green-700 transition"
-            >
-              Book Now
-            </button>
-            {/* select covers button */}
-            <div className="flex flex-col gap-y-1 text-center text-md">
-              <span
-                onClick={() => dispatch({ type: "inc" })}
-                className="border px-2 rounded-sm active:bg-black active:text-white"
+
+          {/* Price */}
+          <div className="flex items-center justify-between rounded-xl bg-green-50 p-5">
+            <div>
+              <p className="text-sm text-gray-500">Economy Price</p>
+              <p className="text-3xl font-bold text-green-700">₹{finalPrice}</p>
+            </div>
+            {/* booking button */}
+            <div className="flex gap-x-2">
+              <button
+                onClick={() => storeBestFlight()}
+                className="rounded-xl bg-green-600 px-6 py-3 text-white text-lg font-semibold hover:bg-green-700 transition"
               >
-                +
-              </span>
-              <span
-                onClick={() => dispatch({ type: "dec" })}
-                className="border px-2 rounded-sm active:bg-black active:text-white"
-              >
-                -
-              </span>
+                Book Now
+              </button>
+              {/* select covers button */}
+              <div className="flex flex-col gap-y-1 text-center text-md">
+                <span
+                  onClick={() => dispatch({ type: "inc" })}
+                  className="border px-2 rounded-sm active:bg-black active:text-white "
+                >
+                  +
+                </span>
+                <span
+                  onClick={() => dispatch({ type: "dec" })}
+                  className="border px-2 rounded-sm active:bg-black active:text-white"
+                >
+                  -
+                </span>
+              </div>
             </div>
           </div>
         </div>

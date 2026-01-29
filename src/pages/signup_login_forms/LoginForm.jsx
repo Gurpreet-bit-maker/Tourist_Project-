@@ -27,7 +27,7 @@ export default function LoginForm() {
       console.log(e);
       seterrorHai("");
       reset();
-      navigate("/profile");
+      navigate("/", e);
     } catch (error) {
       seterrorHai(error.response.data.message);
       console.log(error);
@@ -35,9 +35,9 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="mb-5 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl h-screen border">
+    <div className="mb-5 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl h-screen border md:bg-red-400 md:w-[150rem] md:flex md:justify-center ">
       <div className="fixed inset-0 bg-black/60 z-40 border"></div>
-      <div className="fixed bg-white z-50 flex flex-col justify-center items-center w-85 px-10 py-5 rounded-lg border">
+      <div className="fixed bg-white z-50 flex flex-col justify-center items-center w-85 px-10 py-5 rounded-lg border md:border-2">
         <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
           🔐 Login
         </h2>

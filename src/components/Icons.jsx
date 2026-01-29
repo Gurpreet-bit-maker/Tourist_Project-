@@ -27,7 +27,7 @@ export default function Icons() {
           withCredentials: true,
         },
       );
-
+      window.scrollTo(0, 0);
       navigate("/bookings");
     } catch (error) {
       console.log(error);
