@@ -36,7 +36,7 @@ export default function BookingPage() {
       let update = booked.filter((item) => item.booked);
 
       let storeBookedFlight = await axios.post(
-        "https://tourist-project-backend.onrender.com/user/book",
+        "http://localhost:5000/user/book",
         update[update.length - 1],
         { withCredentials: true },
       );

@@ -9,6 +9,8 @@ export default function BestFlightSinglePage() {
   let navigate = useNavigate();
   let flight = flightState.state;
   let [bookedFlights, setBookedFlight] = useState([]);
+  let [isQR, setQR] = useState(false);
+ 
 
   let reducer = (state, action) => {
     switch (action.type) {
@@ -38,7 +40,10 @@ export default function BestFlightSinglePage() {
 
   let storeBestFlight = async () => {
     // ! check as backend level bookings
- 
+    // if(bookedFlights < 0)
+    // {
+    //   return <p></p>
+    // }
     let newBooking = {
       ...rest,
       availableSeats: availableSeats,
@@ -48,29 +53,42 @@ export default function BestFlightSinglePage() {
     };
     try {
       let res = await axios.post(
-        "https://tourist-project-backend.onrender.com/user/best",
+        "http://localhost:5000/user/best",
         newBooking,
         { withCredentials: true },
       );
-      console.log(res.data);
+      if (res.data.message == "length is full") {
+        alert("cannot store more booking");
+        setTimeout(() => {
+          setQR(false);
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setQR(true);
+        }, 1000);
+      }
+
       setBookedFlight(newBooking);
+      console.log(res.data);
+
       // ! dbs live data
       // available seats
     } catch (error) {
-      console.log(error);
+      if (error.response.data == "please Login") {
+        console.log(error.response.data);
+        navigate("/login");
+      }
     }
   };
 
-  // useEffect(() => {
-  //   console.log(bookedFlights);
-  // });
+  let closeErrorBtn = () => {};
   return (
     <div className="h-200 md:h-140">
       <button
         onClick={() => navigate("/bestflights")}
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2 md:w-20"
       >
-        ← back
+        ← back t
       </button>
       <div className=" md:flex md:justify-center">
         <div className="  w-full max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-lg ">
@@ -144,11 +162,16 @@ export default function BestFlightSinglePage() {
             </div>
             {/* booking button */}
             <div className="flex gap-x-2">
-              <button
-                onClick={() => storeBestFlight()}
-                className="rounded-xl bg-green-600 px-6 py-3 text-white text-lg font-semibold hover:bg-green-700 transition"
-              >
-                Book Now
+              <button onClick={() => storeBestFlight()} className=" ">
+                {isQR ? (
+                  <span className="bg-blue-500 px-6 py-3 rounded-xl text-lg font-semibold hover:bg-green-700 transition text-white">
+                    Pay
+                  </span>
+                ) : (
+                  <span className="bg-green-600  text-white text-lg font-semibold hover:bg-green-700 transition px-6 py-3 rounded-xl">
+                    Book Now
+                  </span>
+                )}
               </button>
               {/* select covers button */}
               <div className="flex flex-col gap-y-1 text-center text-md">
@@ -168,6 +191,31 @@ export default function BestFlightSinglePage() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {isQR ? (
+          <>
+            <h1 className="text-center"></h1>
+
+            <div className="relative flex justify-center">
+              <div id="qrcode" className="w-48 h-48">
+                <svg
+                  className="text-heading"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 29 29"
+                  shapeRendering="crispEdges"
+                >
+                  <path fill="none" d="M0 0h29v29H0z"></path>
+                  <path
+                    stroke="currentColor"
+                    d="M4 4.5h7m1 0h1m1 0h2m2 0h7M4 5.5h1m5 0h1m4 0h2m1 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h1m5 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h7M13 11.5h2M5 12.5h7m3 0h2m2 0h2m3 0h1M6 13.5h1m1 0h1m6 0h1m1 0h1m2 0h5M4 14.5h3m1 0h3m1 0h2m3 0h2m2 0h1m1 0h1M4 15.5h1m2 0h1m3 0h1m5 0h1m1 0h4m1 0h1M4 16.5h1m1 0h2m2 0h2m3 0h1m2 0h1m4 0h1M12 17.5h2m2 0h2m1 0h4m1 0h1M4 18.5h7m1 0h3m2 0h1m3 0h3M4 19.5h1m5 0h1m1 0h1m2 0h1m1 0h1m3 0h2m1 0h1M4 20.5h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m5 0h1M4 21.5h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h4M4 22.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1M4 23.5h1m5 0h1m1 0h1m1 0h1m5 0h3M4 24.5h7m2 0h3m5 0h1m1 0h1"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </>
+        ) : null}
+        {/* warning */}
       </div>
     </div>
   );

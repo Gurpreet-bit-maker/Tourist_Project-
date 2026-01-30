@@ -6,15 +6,13 @@ export default function Profile() {
   let navigate = useNavigate();
 
   let [user, setprofile] = useState([]);
+  let [loginTimer, setLoginTimer] = useState(0);
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get(
-          "https://tourist-project-backend.onrender.com/user/profile",
-          {
-            withCredentials: true,
-          },
-        );
+        let result = await axios.get("http://localhost:5000/user/profile", {
+          withCredentials: true,
+        });
         setprofile(result.data);
       } catch (error) {
         console.log(error);
@@ -22,6 +20,13 @@ export default function Profile() {
     };
     getBookings();
   }, []);
+
+  // setInterval(() => {
+  //   setLoginTimer(loginTimer + 1);
+  // }, 2000);
+
+
+  
 
   // back button navigate
   return (
@@ -31,6 +36,9 @@ export default function Profile() {
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2"
       >
         ← back
+      </button>
+      <button >
+        click me {loginTimer + 1}
       </button>
       {user ? (
         <div className=" md:flex md:justify-center md:h-125 ">

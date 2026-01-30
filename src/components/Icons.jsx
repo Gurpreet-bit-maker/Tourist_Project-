@@ -6,7 +6,7 @@ export default function Icons() {
   let profileNavigate = async () => {
     try {
       let result = await axios.get(
-        "https://tourist-project-backend.onrender.com/user/profile",
+        "http://localhost:5000/user/profile",
         {
           withCredentials: true,
         },
@@ -22,7 +22,7 @@ export default function Icons() {
   let bookingsNavigate = async () => {
     try {
       let result = await axios.get(
-        "https://tourist-project-backend.onrender.com/user/bookings",
+        "http://localhost:5000/user/bookings",
         {
           withCredentials: true,
         },

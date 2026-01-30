@@ -5,10 +5,11 @@ import axios from "axios";
 let BookedContext = ({ children }) => {
   let [dummyTourData, setDummytourData] = useState([]);
   let [flightsData, setFlightData] = useState([]);
+  let [bookedFlightsContext , setBookedFlightContext] = useState([]);
 
   useEffect(() => {
     let dataFetch = async () => {
-      let res = await axios.get("https://tourist-project-backend.onrender.com/user/flight");
+      let res = await axios.get("http://localhost:5000/user/flight");
       setFlightData(...res.data);
     };
     dataFetch();
@@ -16,7 +17,7 @@ let BookedContext = ({ children }) => {
 
   return (
     <bookedVaribleContext.Provider
-      value={{ dummyTourData, setDummytourData, flightsData,setFlightData }}
+      value={{ dummyTourData, setDummytourData, flightsData,setFlightData ,bookedFlightsContext,  setBookedFlightContext}}
     >
       {children}
     </bookedVaribleContext.Provider>
