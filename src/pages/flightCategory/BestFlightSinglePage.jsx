@@ -38,10 +38,7 @@ export default function BestFlightSinglePage() {
 
   let storeBestFlight = async () => {
     // ! check as backend level bookings
-    // if(bookedFlights < 0)
-    // {
-    //   return <p></p>
-    // }
+ 
     let newBooking = {
       ...rest,
       availableSeats: availableSeats,
@@ -51,7 +48,7 @@ export default function BestFlightSinglePage() {
     };
     try {
       let res = await axios.post(
-        "https://tourist-project-backend.onrender.com/user/common",
+        "https://tourist-project-backend.onrender.com/user/best",
         newBooking,
         { withCredentials: true },
       );

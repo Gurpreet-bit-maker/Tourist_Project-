@@ -1,7 +1,6 @@
 import { useState } from "react";
 import logo from "../../public/Logo.png";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import {
   Link,
   BrowserRouter as Router,
@@ -15,18 +14,6 @@ export default function NavTab() {
   let styles = " hover:text-green-400 p-2 font-bold";
 
   let logintrue = useLocation();
-  let loginOrSignup = async () => {
-    if (logintrue) {
-      let sendToken = await axios.post(
-        "https://tourist-project-backend.onrender.com/user/signout",
-        {
-          withCredentials: true,
-        },
-      );
-    } else {
-      navigate("/login");
-    }
-  };
   return (
     <div className=" w-full h-20 ">
       {/* navbaar */}
@@ -42,10 +29,9 @@ export default function NavTab() {
             <Link to="/signup">
               <button className="">SignUp</button>
             </Link>
-
-            <button onClick={loginOrSignup} className="underline">
-              /{logintrue ? "SignOut" : "Login"}
-            </button>
+            <Link to="login">
+              <button className="underline">/Login</button>
+            </Link>
           </div>
         </div>
       </div>
