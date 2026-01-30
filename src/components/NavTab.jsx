@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../public/Logo.png";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Link,
   BrowserRouter as Router,
@@ -11,9 +12,44 @@ import {
 import WeatherPage from "../pages/WeatherPage";
 
 export default function NavTab() {
-  let styles = " hover:text-green-400 p-2 font-bold";
+  let navigate = useNavigate();
+  let [dataReceived, setData] = useState(null);
 
-  let logintrue = useLocation();
+  useEffect(() => {
+    let getBookings = async () => {
+      try {
+        let result = await axios.get("http://localhost:5000/user/bookings", {
+          withCredentials: true,
+        });
+        setData(result.data);
+        console.log(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBookings();
+  }, []);
+
+  let signOut = async () => {
+    if (!dataReceived) {
+      navigate("/login");
+    }
+    if (dataReceived) {
+      try {
+        let result = await axios.post(
+          "http://localhost:5000/user/logout",
+          {},
+          {
+            withCredentials: true,
+          },
+        );
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className=" w-full h-20 ">
       {/* navbaar */}
@@ -29,9 +65,10 @@ export default function NavTab() {
             <Link to="/signup">
               <button className="">SignUp</button>
             </Link>
-            <Link to="login">
-              <button className="underline">/Login</button>
-            </Link>
+
+            <button onClick={signOut} className="underline">
+              {dataReceived ? "/SignOut" : "/Login"}
+            </button>
           </div>
         </div>
       </div>

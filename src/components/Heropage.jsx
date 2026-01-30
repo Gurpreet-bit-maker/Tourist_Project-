@@ -1,13 +1,19 @@
 import { useState, useContext } from "react";
-import { Link , useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Trevel from "../../public/Traveller 1.png";
 import FlightCategory from "./FlightsCategory";
 import Footer from "./Footer";
+import NavTab from "./NavTab";
+
 
 export default function Heropage() {
   
+ 
+ 
+
   return (
     <>
+      <NavTab />
       <div className="flex w-full h-180 shadow-sm gap-x-1 justify-center md:full  md:justify-around">
         <div className="">
           <div className="flex justify-center flex-col  h-screen  pl-2  w-50 md:w-90">

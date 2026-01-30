@@ -5,7 +5,7 @@ export default function GetTourDetailsPage() {
   let navigate = useNavigate();
 
   let bookFlight_btn = (p) => {
-    navigate("/booking_page", {state: p});
+    navigate("/booking_page", { state: p });
   };
 
   return (

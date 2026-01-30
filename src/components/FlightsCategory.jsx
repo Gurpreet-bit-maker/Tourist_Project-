@@ -4,7 +4,7 @@ import bookedVaribleContext from "../context/bookedFlights/bookedCreateContext";
 import { useEffect } from "react";
 import axios from "axios";
 
-export default function FlightCategory() {
+export default function FlightCategory({ dataReceived }) {
   let { bookedFlightsContext, setBookedFlightContext } =
     useContext(bookedVaribleContext);
 
@@ -22,7 +22,7 @@ export default function FlightCategory() {
         setBookedFlightContext(result.data);
         console.log(result.data);
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data);
       }
     };
     getBookings();
@@ -42,7 +42,8 @@ export default function FlightCategory() {
       window.scrollTo(0, 0);
       navigate("/events");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
+      navigate("/login");
     }
   };
   return (

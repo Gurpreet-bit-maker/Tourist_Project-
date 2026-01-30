@@ -88,7 +88,7 @@ export default function BestFlightSinglePage() {
         onClick={() => navigate("/bestflights")}
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2 md:w-20"
       >
-        ← back t
+        ← back
       </button>
       <div className=" md:flex md:justify-center">
         <div className="  w-full max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-lg ">

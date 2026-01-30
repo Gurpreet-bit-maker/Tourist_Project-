@@ -13,8 +13,8 @@ export default function LoginForm() {
     formState: { errors, isSubmitSuccessful },
   } = useForm();
   localStorage.setItem("time", JSON.stringify(new Date()));
-  let item = localStorage.getItem("time")
-  console.log(item.slice(12,20));
+  let item = localStorage.getItem("time");
+  console.log(item.slice(12, 20));
 
   const loginForm = async (e) => {
     try {
@@ -34,9 +34,9 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="mb-5 w-full max-w-md rounded-2xl bg-white p-8 shadow-xl h-screen border md:bg-red-400 md:w-[150rem] md:flex md:justify-center ">
+    <div className=" w-full max-w-md rounded-2xl shadow-xl min-h-200 md:min-h-140  md:max-w-270  flex  justify-center md:flex md:justify-center ">
       <div className="fixed inset-0 bg-black/60 z-40 border"></div>
-      <div className="fixed bg-white z-50 flex flex-col justify-center items-center w-85 px-10 py-5 rounded-lg border md:border-2">
+      <div className="fixed bg-white z-50 flex flex-col justify-center items-center w-85 px-10 py-5 rounded-lg border md:border-2 top-30">
         <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
           🔐 Login
         </h2>
@@ -83,8 +83,8 @@ export default function LoginForm() {
         {isSubmitSuccessful && <p>submited</p>}
         {/* home btn */}
         <button
-          onClick={() => navigate("/profile")}
-          className="flex mt-2 items-center  gap-1 rounded-lg border border-gray-300 bg-black/80 px-3 py-1 text-lg font-medium text-gray-700 hover:bg-gray-100 transition"
+          onClick={() => navigate("/")}
+          className="flex mt-2 items-center  gap-1 rounded-lg border border-gray-300 bg-black/80 px-3 py-1 text-lg font-medium text-gray-700 hover:bg-gray-500 transition"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

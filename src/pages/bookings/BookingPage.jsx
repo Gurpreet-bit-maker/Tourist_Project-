@@ -55,7 +55,13 @@ export default function BookingPage() {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-2 h-200 ">
+      {/* <button
+        onClick={() => navigate("/getTourDetail_page")}
+        className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2 md:w-20"
+      >
+        ← back
+      </button> */}
+      <div className="max-w-190 mx-auto p-2 grid grid-cols-1 md:grid-cols-2 gap-2 min-h-200 bg-gradient-to-b from-indigo-50 via-white to-blue-50 md:min-h-140">
         {flightsData.map((flight) => {
           return (
             flight.to.split(" ")[0] == data.state.to && (

@@ -36,7 +36,7 @@ function App() {
         <BookedContext>
           <ShareFormContext>
             <BrowserRouter>
-              <NavTab />
+             
 
               <Routes>
                 <Route path="/" element={<Heropage />} />
