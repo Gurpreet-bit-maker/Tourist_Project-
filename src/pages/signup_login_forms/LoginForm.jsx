@@ -13,7 +13,7 @@ export default function LoginForm() {
     formState: { errors, isSubmitSuccessful },
   } = useForm();
  
-  console.log(item.slice(12, 20));
+
 
   const loginForm = async (e) => {
     try {

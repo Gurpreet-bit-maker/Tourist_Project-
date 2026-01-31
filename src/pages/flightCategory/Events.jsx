@@ -42,11 +42,11 @@ export default function Events() {
       >
         ← back
       </button>
-      <div className="space-y-4 min-h-150 md:flex md:flex-col md:items-center md:border">
+      <div className="space-y-4 max-h-210 h-210 px-2 md:h-150 md:flex md:flex-col md:items-center">
         {events.map((event) => (
           <div
             key={event.id}
-            className="max-w-md rounded-xl border bg-white p-4 shadow md:w-150 md:h-40"
+            className="max-w-md h-40 rounded-xl border bg-white p-4 shadow md:w-150 md:h-40"
           >
             <div className="flex items-start gap-3">
               <div className="text-2xl">{event.icon}</div>
