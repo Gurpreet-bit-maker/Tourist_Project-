@@ -24,16 +24,16 @@ export default function Bookings() {
 
   //   console.log(bookings);
   return (
-    <div className="min-h-200 max-h-auto  md:bg-gray-100 md:h-140">
+    <div className="min-h-220 max-h-auto md:bg-gray-100 md:min-h-160">
       <button
         onClick={() => navigate("/")}
         className="flex items-center gap-2 px-2 py-1 rounded-md bg-blue-600 text-white text-lg font-medium hover:bg-blue-700 transition m-2 "
       >
         ← back
       </button>
-      <div className="md:flex md:justify-center">
+      <div className="md:flex md:justify-center md:items-center md:h-110 ">
         {bookedFlightsContext && bookedFlightsContext.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:flex ">
             {bookedFlightsContext.map((flight) => (
               <div
                 key={flight._id}

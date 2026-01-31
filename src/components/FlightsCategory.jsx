@@ -47,14 +47,14 @@ export default function FlightCategory({ dataReceived }) {
     }
   };
   return (
-    <div className="mt-5 grid grid-cols-2 h-100 md:flex md:justify-around">
+    <div className="mt-5 flex flex-col gap-y-5 items-center w-full  min-h-200 h-auto md:flex md:flex-row md:justify-around md:items-start pt-10">
       {/* best flights */}
 
       <div
         onClick={bestFlightsNavigate}
-        className=" max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-lg hover:shadow-xl transition h-40 w-50 md:border-black md:h-60 md:w-80 md:bg-black/80 "
+        className=" max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-lg hover:shadow-xl transition h-70 w-70 md:border-black md:h-60 md:w-80 md:bg-black/80   hover:shadow-lg hover:-translate-y-1 transition-all duration-300 dark:hover:bg-gray-800"
       >
-        <div className="flex flex-col items-center gap-y-2 ">
+        <div className="flex flex-col items-center gap-y-6 ">
           <div className="flex justify-between gap-x-2">
             <h2 className="text-lg font-bold text-gray-800 md:text-white">
               ✈️ Best Flights
@@ -63,13 +63,11 @@ export default function FlightCategory({ dataReceived }) {
               Top Choice
             </span>
           </div>
-          <p className="text-sm text-gray-200 leading-4">
+          <p className="text-sm md:text-gray-300 leading-5  ">
             Best Flights offers you the best travel experience with reliable
             airlines, affordable prices, and convenient flight timings. Whether
             you are traveling for a business trip or planning a vacation,
-            comfortable seating, and trusted services here. With easy booking,
-            transparent details, Best Flights makes your journey smooth and
-            stress-free.
+            comfortable seating, and trusted services here.
           </p>
         </div>
       </div>
@@ -78,12 +76,12 @@ export default function FlightCategory({ dataReceived }) {
 
       <div
         onClick={veiwEvent}
-        className="relative max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-lg hover:shadow-xl transition h-40 w-50 md:border-black md:h-60 md:w-80  md:bg-black/80 "
+        className="relative max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-lg hover:shadow-xl transition h-70 w-70 md:border-black md:h-60 md:w-80  md:bg-black/80 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 dark:hover:bg-gray-800"
       >
         <h3 className="bg-red-600 absolute top-[-10px] right-[-4px] text-white px-2 rounded-2xl">
           {bookedFlights}
         </h3>
-        <div className="flex items-center flex-col justify-between">
+        <div className="flex items-center flex-col gap-y-6 justify-between">
           <div className="flex justify-between ">
             <h2 className="text-lg font-bold text-gray-800 md:text-white">
               🎉 Upcoming Event
@@ -92,13 +90,11 @@ export default function FlightCategory({ dataReceived }) {
               Click for Details
             </span>
           </div>
-          <p className="text-sm text-gray-200 leading-4">
+          <p className="text-sm md:text-gray-300 leading-5">
             Flight Events keep you updated with all important information
             related to your journey. From booking confirmation and check-in
             updates to delays, gate changes, and landing status, every event is
-            shown in real time. These timely updates help you stay informed,
-            plan better, and travel with confidence, ensuring a smooth and
-            hassle-free flight experience.
+            shown in real time.
           </p>
         </div>
       </div>
