@@ -18,9 +18,12 @@ export default function NavTab() {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:5000/user/bookings", {
-          withCredentials: true,
-        });
+        let result = await axios.get(
+          "https://tourist-project-backend.onrender.com/user/bookings",
+          {
+            withCredentials: true,
+          },
+        );
         setData(result.data);
         console.log(result.data);
       } catch (error) {
@@ -37,7 +40,7 @@ export default function NavTab() {
     if (dataReceived) {
       try {
         let result = await axios.post(
-          "http://localhost:5000/user/logout",
+          "https://tourist-project-backend.onrender.com/user/logout",
           {},
           {
             withCredentials: true,

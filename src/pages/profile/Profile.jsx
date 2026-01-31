@@ -4,15 +4,17 @@ import axios from "axios";
 
 export default function Profile() {
   let navigate = useNavigate();
-
   let [user, setprofile] = useState([]);
-  let [loginTimer, setLoginTimer] = useState(0);
+  
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:5000/user/profile", {
-          withCredentials: true,
-        });
+        let result = await axios.get(
+          "https://tourist-project-backend.onrender.com/user/profile",
+          {
+            withCredentials: true,
+          },
+        );
         setprofile(result.data);
       } catch (error) {
         console.log(error);
@@ -20,13 +22,6 @@ export default function Profile() {
     };
     getBookings();
   }, []);
-
-  // setInterval(() => {
-  //   setLoginTimer(loginTimer + 1);
-  // }, 2000);
-
-
-  
 
   // back button navigate
   return (
@@ -37,9 +32,7 @@ export default function Profile() {
       >
         ← back
       </button>
-      <button >
-        click me {loginTimer + 1}
-      </button>
+      
       {user ? (
         <div className=" md:flex md:justify-center md:h-125 ">
           <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-blue-50 p-6 shadow-lg h-200 md:border-black md:h-110 md:max-w-130">

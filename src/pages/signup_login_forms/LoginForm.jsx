@@ -12,18 +12,19 @@ export default function LoginForm() {
     reset,
     formState: { errors, isSubmitSuccessful },
   } = useForm();
-  localStorage.setItem("time", JSON.stringify(new Date()));
-  let item = localStorage.getItem("time");
+ 
   console.log(item.slice(12, 20));
 
   const loginForm = async (e) => {
     try {
-      let loginData = await axios.post("http://localhost:5000/user/login", e, {
-        withCredentials: true,
-      });
-
+      let loginData = await axios.post(
+        "https://tourist-project-backend.onrender.com/user/login",
+        e,
+        {
+          withCredentials: true,
+        },
+      );
       console.log(loginData);
-
       seterrorHai("");
       reset();
       navigate("/", e);

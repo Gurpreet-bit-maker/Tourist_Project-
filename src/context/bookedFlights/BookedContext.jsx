@@ -9,7 +9,7 @@ let BookedContext = ({ children }) => {
 
   useEffect(() => {
     let dataFetch = async () => {
-      let res = await axios.get("http://localhost:5000/user/flight");
+      let res = await axios.get("https://tourist-project-backend.onrender.com/user/flight");
       setFlightData(...res.data);
     };
     dataFetch();

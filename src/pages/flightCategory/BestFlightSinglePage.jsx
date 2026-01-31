@@ -53,7 +53,7 @@ export default function BestFlightSinglePage() {
     };
     try {
       let res = await axios.post(
-        "http://localhost:5000/user/best",
+        "https://tourist-project-backend.onrender.com/user/best",
         newBooking,
         { withCredentials: true },
       );

@@ -15,7 +15,7 @@ export default function FlightCategory({ dataReceived }) {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:5000/user/bookings", {
+        let result = await axios.get("https://tourist-project-backend.onrender.com/user/bookings", {
           withCredentials: true,
         });
         setBookedFlight(result.data.length);
@@ -35,7 +35,7 @@ export default function FlightCategory({ dataReceived }) {
 
   let veiwEvent = async () => {
     try {
-      let result = await axios.get("http://localhost:5000/user/events", {
+      let result = await axios.get("https://tourist-project-backend.onrender.com/user/events", {
         withCredentials: true,
       });
       console.log(result);

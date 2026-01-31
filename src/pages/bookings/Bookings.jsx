@@ -10,7 +10,7 @@ export default function Bookings() {
   useEffect(() => {
     let getBookings = async () => {
       try {
-        let result = await axios.get("http://localhost:5000/user/bookings", {
+        let result = await axios.get("https://tourist-project-backend.onrender.com/user/bookings", {
           withCredentials: true,
         });
         setBookedFlightContext(result.data);
